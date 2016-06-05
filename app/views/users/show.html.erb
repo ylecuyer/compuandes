@@ -1,11 +1,14 @@
-<h1>User</h1>
-
-<%= image_tag avatar_url(@user) %>
-<%= @user.full_name %>
-<%= @user.graduate_year %>
-
+<h1 class="title"><%= @user.full_name %></h1>
+<h2 class="subtitle">
 <%= linkedin_tag(@user) %>
 <%= facebook_tag(@user) %>
 <%= uniandes_tag(@user) %>
 <%= vcard_tag(@user) %>
 <%= cv_tag(@user) %>
+</h2>
+
+  <%= image_tag avatar_url(@user), class: 'image is-96x96' %>
+
+<%= @user.full_name %>
+<%= @user.graduate_year %>
+

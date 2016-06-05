@@ -2,16 +2,44 @@
 <html>
 <head>
   <title>Compuandes</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.0.28/css/bulma.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <nav class="nav has-shadow">
+      <div class="container is-fluid">
+        <div class="nav-left">
+          <%= active_link_to 'Directorio', users_path, class: 'nav-item is-tab', class_active: 'is-active', active: :exclusive %>
+          <%= active_link_to 'Mi perfil', user_path(current_user), class: 'nav-item is-tab', class_active: 'is-active', active: :exclusive %>
+        </div>
+      </div>
+    </nav>
 
-<%= link_to 'Directorio', users_path %>
-<%= link_to 'Mi perfil', user_path(current_user) %>
+    <section class="section">
+      <div class="container is-fluid">
+        <%= yield %>
+      </div>
+    </section>
 
-<%= yield %>
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+          <strong>Compuandes</strong> por <a href="https://www.github.com/ylecuyer">Yoann Lecuyer</a>. The source code is licensed
+          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+          is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC ANS 4.0</a>.
+          </p>
+          <p>
+          <a class="icon" href="https://github.com/ylecuyer/compuandes">
+            <i class="fa fa-github"></i>
+          </a>
+          </p>
+        </div>
+      </div>
+    </footer>
 
 </body>
 </html>
