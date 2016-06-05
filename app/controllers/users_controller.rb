@@ -6,6 +6,25 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def map
+    authorize User, :index?
+    @region = params[:region]
+    @map = case @region 
+           when 'NA' 
+             'north_america_mill'
+           when 'SA'
+             'south_america_mill'
+           when 'EU'
+             'europe_mill'
+           when 'OC'
+             'oceania_mill'
+           when 'AS'
+             'asia_mill'
+           else
+             'continents_mill'
+           end
+  end
+
   def search
     authorize User, :index?
 

@@ -24,3 +24,9 @@ img.disabled {
 .horizontal-center {
   margin: auto 0px;
 }
+
+.map {
+  margin: 0px auto;
+  width: 800px;
+  height: 600px;
+}

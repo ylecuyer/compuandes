@@ -1,0 +1,14 @@
+<div id="map" class="map"></div>
+<script>
+$(function(){
+  
+  var onRegionClick = function(e, code) {
+    window.location = '/users/map/'+code;
+  }
+
+  $('#map').vectorMap({
+    map: '<%= @map %>',
+    onRegionClick: onRegionClick
+  });
+});
+</script>
