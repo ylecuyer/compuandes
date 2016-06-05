@@ -1,0 +1,27 @@
+app:
+  build: .
+  ports:
+    - "3000:3000"
+  links:
+    - db
+    - mail
+  volumes:
+    - .:/usr/src/app
+    - ./docker/bundle:/bundle
+  environment:
+    - BUNDLE_PATH=/bundle
+db:
+  image: postgres
+  ports:
+    - "5432:5432"
+  environment:
+    - POSTGRES_USER=compuandes
+    - POSTGRES_PASSWORD=compuandes
+    - POSTGRES_DB=compuandes
+  volumes:
+    - /var/lib/postgresql/data
+    - ./init-extension-db.sql:/docker-entrypoint-initdb.d/init-extension-db.sql
+mail:
+  image: djfarrelly/maildev
+  ports:
+    - "1080:80"

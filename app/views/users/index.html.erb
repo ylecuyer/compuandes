@@ -1,0 +1,70 @@
+<h1>Directorio</h1>
+
+<%= form_tag users_search_path do %>
+
+  <%= field_set_tag 'Basico' do %>
+    <%= label_tag :last_name, 'Apellido' %>
+    <%= text_field_tag :last_name %> 
+    <%= check_box_tag :last_name_contains, "1", true %>
+    <%= label_tag :last_name_contains, 'contiene'%>
+    <br/>
+
+    <%= label_tag :first_name, 'Nombre' %>
+    <%= text_field_tag :first_name %> 
+    <%= check_box_tag :first_name_contains, "1", true %>
+    <%= label_tag :first_name_contains, 'contiene'%>
+    <br/>
+
+    <%= label_tag :graduate_year, 'Ano de grado' %>
+    <%= select_tag :graduate_year, options_for_select((User.minimum(:graduate_year)..Time.now.year).to_a), prompt: 'Todos' %> 
+
+  <% end %>
+
+  <%= field_set_tag 'Avanzado' do %>
+    <%= label_tag :company, 'Empresa' %>
+    <%= text_field_tag :company %> 
+    <%= check_box_tag :company_contains, "1", true %>
+    <%= label_tag :company_contains, 'contiene'%>
+    <br/>
+
+    <%= label_tag :job, 'Cargo' %>
+    <%= text_field_tag :job %> 
+    <%= check_box_tag :job_contains, "1", true %>
+    <%= label_tag :job_contains, 'contiene'%>
+    <br/>
+
+    <%= label_tag :continent, 'Continente' %>
+    <%= select_tag :continent, options_for_select([
+      ["Norteamerica", 1],
+      ["Suramerica", 2],
+      ["Asia", 3],
+      ["Europa", 4],
+      ["Africa", 5],
+      ["Oceania", 6],
+      ["Antartica", 7],
+     ]), prompt: 'Todos' %> 
+    <br/>
+
+    <%= label_tag :country, 'Pais' %>
+    <%= country_select :country, nil, prompt: 'Todos' %> 
+    <br/>
+
+    <%= label_tag :city, 'Ciudad' %>
+    <%= text_field_tag :city %> 
+    <%= check_box_tag :city_contains, "1", true %>
+    <%= label_tag :city_contains, 'contiene'%>
+    <br/>
+  <% end %>
+
+  <%= button_tag 'Borrar', type: :reset %>
+  <%= submit_tag 'Buscar' %>
+
+<% end %>
+
+<h1>Ultimas actualizaciones</h1>
+
+<ul>
+  <% User.order('updated_at DESC').take(5).each do |user|%>
+    <li><%= image_tag avatar_url(user) %> <%= user.full_name %></li>
+  <% end %>
+</ul>
