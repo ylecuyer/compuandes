@@ -17,10 +17,10 @@ module UsersHelper
   def linkedin_tag(user)
     if user.linkedin.present?
       link_to linkedin_url(user), target: '_blank' do
-        image_tag 'logo_linkedin', size: '15x15'
+        image_tag 'logo_linkedin', size: '25x25'
       end
     else
-      image_tag 'logo_linkedin', size: '15x15', class: 'disabled'
+      image_tag 'logo_linkedin', size: '25x25', class: 'disabled'
     end
   end
 
@@ -31,16 +31,16 @@ module UsersHelper
   def facebook_tag(user)
     if user.facebook.present?
       link_to facebook_url(user), target: '_blank' do
-        image_tag 'logo_facebook', size: '15x15'
+        image_tag 'logo_facebook', size: '25x25'
       end
     else
-      image_tag 'logo_facebook', size: '15x15', class: 'disabled'
+      image_tag 'logo_facebook', size: '25x25', class: 'disabled'
     end
   end
 
   def uniandes_tag(user)
     mail_to user.email do
-      image_tag 'logo_uniandes', size: '15x15'
+      image_tag 'logo_uniandes', size: '25x25'
     end
   end
 

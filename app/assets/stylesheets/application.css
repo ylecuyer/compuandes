@@ -30,3 +30,12 @@ img.disabled {
   width: 800px;
   height: 600px;
 }
+
+.title a:hover, .subtitle a:hover {
+  border-bottom: none;
+}
+
+.box hr.full-width {
+  margin-left: -20px;
+  margin-right: -20px;
+}

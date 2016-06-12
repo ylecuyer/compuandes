@@ -1,14 +1,43 @@
-<h1 class="title"><%= @user.full_name %></h1>
-<h2 class="subtitle">
-<%= linkedin_tag(@user) %>
-<%= facebook_tag(@user) %>
-<%= uniandes_tag(@user) %>
-<%= vcard_tag(@user) %>
-<%= cv_tag(@user) %>
-</h2>
+<div class="box">
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-96x96">
+        <%= image_tag avatar_url(@user), class: 'image is-96x96' %>
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+        <strong><%= @user.full_name %></strong>
+        <br>
+        Entro en <%= @user.graduate_year %>
+      </p>
+      </div>
+    </div>
+  </article>
 
-  <%= image_tag avatar_url(@user), class: 'image is-96x96' %>
+  <hr class="full-width"/>
 
-<%= @user.full_name %>
-<%= @user.graduate_year %>
-
+  <nav class="level">
+    <div class="level-item has-text-centered">
+      <p class="heading">Uniandes</p>
+      <p class="title"><%= uniandes_tag(@user) %></p>
+    </div>
+    <div class="level-item has-text-centered">
+      <p class="heading">Linkedin</p>
+      <p class="title"><%= linkedin_tag(@user) %></p>
+    </div>
+    <div class="level-item has-text-centered">
+      <p class="heading">Facebook</p>
+      <p class="title"><%= facebook_tag(@user) %></p>
+    </div>
+    <div class="level-item has-text-centered">
+      <p class="heading">vCard</p>
+      <p class="title"><%= vcard_tag(@user) %></p>
+    </div>
+    <div class="level-item has-text-centered">
+      <p class="heading">CV</p>
+      <p class="title"><%= cv_tag(@user) %></p>
+    </div>
+  </nav>
+</div>
