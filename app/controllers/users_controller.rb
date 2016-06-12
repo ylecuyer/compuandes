@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def search
     authorize User, :index?
 
-    @users = User.order('last_name asc, first_name asc')
+    @users = User.order('last_name asc, first_name asc').page(params[:page]).per(9)
 
     if params[:last_name].present?
       term = params[:last_name]

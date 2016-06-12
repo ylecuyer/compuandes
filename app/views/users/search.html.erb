@@ -1,4 +1,4 @@
-<h1 class="title">Resultados (<%= @users.count %>)</h1>
+<h1 class="title">Resultados (<%= @users.total_count %>)</h1>
 <hr/>
 
 <div class="columns is-multiline">
@@ -8,3 +8,5 @@
   </div>
   <% end %>
 </div>
+
+<%= paginate @users, theme: 'bulma' %>

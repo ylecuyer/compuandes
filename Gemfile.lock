@@ -244,6 +244,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   letter_avatar
   paperclip!
   pg (~> 0.15)
