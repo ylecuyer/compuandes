@@ -1,0 +1,19 @@
+<div id="map" class="map"></div>
+<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script type="text/javascript"> 
+  var myOptions = { mapTypeId: google.maps.MapTypeId.ROADMAP };
+  var map = new google.maps.Map(document.getElementById("map"), myOptions);
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({componentRestrictions: { country: '<%= @region %>' }}, function (results, status) {
+    var ne = results[0].geometry.viewport.getNorthEast();
+    var sw = results[0].geometry.viewport.getSouthWest();
+
+    map.fitBounds(results[0].geometry.viewport);               
+
+    var boundingBoxPoints = [
+      ne, new google.maps.LatLng(ne.lat(), sw.lng()),
+      sw, new google.maps.LatLng(sw.lat(), ne.lng()), ne
+    ];
+  }); 
+</script>
