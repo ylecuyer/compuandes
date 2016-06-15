@@ -21,6 +21,8 @@ class UsersController < ApplicationController
     authorize User, :index?
     @region = params[:region]
 
+    @is_worldmap = params[:region].nil?
+
     @map = case @region 
            when 'NA' 
              'north_america_mill'
@@ -32,6 +34,8 @@ class UsersController < ApplicationController
              'oceania_mill'
            when 'AS'
              'asia_mill'
+           when 'AF'
+             'africa_mill'
            when nil
              'continents_mill'
            end

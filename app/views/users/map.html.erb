@@ -3,7 +3,11 @@
 $(function(){
   
   var onRegionClick = function(e, code) {
-    window.location = '/users/map/'+code;
+    <% if @is_worldmap %>
+      window.location = '/users/map/'+code;
+    <% else %>
+      window.location = '/users/country/'+code;
+    <% end %>
   }
 
   $('#map').vectorMap({
