@@ -6,6 +6,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def edit
+    @user = User.find params[:id]
+    authorize @user
+  end
+
   def country
     authorize User, :index?
     @region = params[:region]
@@ -92,6 +97,23 @@ class UsersController < ApplicationController
 
     send_data card, filename: "#{@user.email}.vcf"
 
+  end
+
+  def update
+    @user = User.find params[:id]
+    authorize @user
+    if @user.update(user_params)
+      redirect_to @user, notice: 'Actualizacion hecha'
+    else
+      render :edit
+    end
+  end
+
+
+  private
+
+  def user_params
+    params.require(:user).permit(:last_name, :first_name, :graduate_year, :facebook, :linkedin)
   end
 
 end

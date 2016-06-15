@@ -16,4 +16,9 @@ class ApplicationController < ActionController::Base
     is_a?(ActiveAdmin::BaseController) || is_a?(ActiveAdmin::Devise::SessionsController) 
   end
 
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
+  end
+
 end

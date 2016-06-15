@@ -1,4 +1,12 @@
 <div class="box">
+  <% if policy(@user).edit? %>
+    <%= link_to edit_user_path(@user), class: 'button pull-right is-primary' do %>
+      <span class="icon is-small">
+        <i class="fa fa-pencil"></i>
+      </span>
+      <span>Modificar</span>
+    <% end %>
+  <% end %>
   <article class="media">
     <div class="media-left">
       <figure class="image is-96x96">
