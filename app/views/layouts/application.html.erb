@@ -36,6 +36,15 @@
 
     <section class="section">
       <div class="container is-fluid">
+      
+
+        <% flash.each do |key, msg| %>
+          <div class="notification">
+            <button class="delete"></button>
+            <%= msg %>
+          </div>
+        <% end %>
+
         <%= yield %>
       </div>
     </section>
@@ -57,5 +66,12 @@
       </div>
     </footer>
 
+    <script type="text/javascript">
+      $(function() {
+        $('.notification .delete').click(function() {
+          $(this).parent().remove();
+        }); 
+      });
+    </script>
   </body>
 </html>
