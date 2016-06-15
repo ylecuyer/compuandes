@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   private
 
   def excepted_controller?
-    is_a?(ActiveAdmin::BaseController) || is_a?(ActiveAdmin::Devise::SessionsController) 
+    is_a?(ActiveAdmin::BaseController) || is_a?(ActiveAdmin::Devise::SessionsController) || is_a?(Devise::SessionsController)
   end
 
   def user_not_authorized

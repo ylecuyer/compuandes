@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, ActiveAdmin::Devise.config
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
   get 'users/:id/vcard', to: 'users#vcard', as: 'user_vcard'
