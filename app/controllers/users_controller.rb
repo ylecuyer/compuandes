@@ -79,6 +79,15 @@ class UsersController < ApplicationController
       @users = @users.where("lower(unaccent(company)) LIKE #{term}")
     end
 
+    if params[:job].present?
+      term = params[:job]
+      if params[:job_contains]
+        term = "%#{term}%"
+      end
+      term = "lower(unaccent('#{term}'))"
+      @users = @users.where("lower(unaccent(job)) LIKE #{term}")
+    end
+
   end
 
   def show
