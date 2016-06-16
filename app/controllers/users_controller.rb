@@ -88,6 +88,15 @@ class UsersController < ApplicationController
       @users = @users.where("lower(unaccent(job)) LIKE #{term}")
     end
 
+    if params[:city].present?
+      term = params[:city]
+      if params[:city_contains]
+        term = "%#{term}%"
+      end
+      term = "lower(unaccent('#{term}'))"
+      @users = @users.where("lower(unaccent(personal_contacts.city)) LIKE #{term} or lower(unaccent(profesional_contacts.city)) LIKE #{term}")
+    end
+
   end
 
   def show
