@@ -1,4 +1,5 @@
 class StaticController < ActionController::Base
+  layout 'application'
 
   def index
     if user_signed_in?
@@ -6,6 +7,9 @@ class StaticController < ActionController::Base
     else
       render layout: false
     end
+  end
+
+  def services
   end
 
 end

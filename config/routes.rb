@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'users/search', to: 'users#search', as: 'users_search'
   resources :users, except: :create
 
+  get 'services', to: 'static#services', as: 'services'
+
   root to: 'static#index'
 
 end
