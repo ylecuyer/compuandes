@@ -20,4 +20,13 @@ class User < ActiveRecord::Base
     [last_name, first_name].join(" ")
   end
 
+  after_create :init_contacts
+
+  private
+
+  def init_contacts
+    self.personal_contacts = [PersonalContact.new, PersonalContact.new]
+    self.profesional_contacts = [ProfesionalContact.new, ProfesionalContact.new]
+  end
+
 end
