@@ -1,6 +1,27 @@
 <h1 class="title">Resultados (<%= @users.total_count %>)</h1>
 <hr/>
 
+<table>
+  <tbody>
+    <tr>
+      <th>Apellido:</th><td><%= params[:last_name] %></td>
+      <th>Nombre:</th><td><%= params[:first_name] %></td>
+      <th>Ano de grado:</th><td><%= params[:graduate_year] %></td>
+    </tr>
+    <tr>
+      <th>Empresa:</th><td><%= params[:company] %></td>
+      <th>Cargo:</th><td><%= params[:job] %></td>
+      <th></th><td></td>
+    </tr>
+    <tr>
+      <th>Continente:</th><td><%= params[:continent] %></td>
+      <th>Pais:</th><td><%= ISO3166::Country.new(params[:country][0]).try(:name) %></td>
+      <th>Ciudad</th><td><%= params[:city] %></td>
+  </tbody>
+</table>
+
+<hr/>
+
 <div class="columns is-multiline">
   <% @users.each do |user|%>
   <div class="column is-4">
