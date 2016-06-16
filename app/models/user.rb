@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   has_attached_file :cv
   validates_attachment_content_type :cv, content_type: 'application/pdf'
 
+  has_many :personal_contacts
+  accepts_nested_attributes_for :personal_contacts
+
   def full_name
     [last_name, first_name].join(" ")
   end

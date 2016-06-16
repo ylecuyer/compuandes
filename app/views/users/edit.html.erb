@@ -8,6 +8,44 @@
   <%= f.input :graduate_year, wrapper: false %>
   <%= f.input :facebook, wrapper: false %>
   <%= f.input :linkedin, wrapper: false %>
+
+  <div id="personal-contact-tab-container" class="tabs is-boxed">
+    <ul>
+      <% @user.personal_contacts.each_with_index do |personal_contact, index| %> 
+        <li><a href="#personal-contact-<%= index+1 %>">Contacto personal <%= index+1 %></a></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="personal-contact-tab-panel">
+    <% @user.personal_contacts.each_with_index do |personal_contact, index| %> 
+      <div id="personal-contact-<%= index+1 %>">
+        <%= f.simple_fields_for :personal_contacts, personal_contact do |fa| %>
+          <%= fa.input :address_1, wrapper: false %>
+          <%= fa.input :address_2, wrapper: false %>
+          <%= fa.input :address_3, wrapper: false %>
+          <%= fa.input :country, wrapper: false %>
+          <%= fa.input :state, wrapper: false %>
+          <%= fa.input :zip_code, wrapper: false %>
+          <%= fa.input :city, wrapper: false %>
+          <%= fa.input :extra, wrapper: false %>
+          <%= fa.input :phone, wrapper: false %>
+          <%= fa.input :mobile, wrapper: false %>
+          <%= fa.input :email, wrapper: false %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+      $('#personal-contact-tab-container').easytabs({
+        animate: false,
+        tabActiveClass: "is-active",
+        panelContext: $("#personal-contact-tab-panel")
+      });
+    });
+  </script>
+
   <p class="control">
     <%= f.button :submit, class: 'button is-primary' %>
     <%= f.button :button, 'Cancelar', :type => 'reset', :class => 'button is-link' %>

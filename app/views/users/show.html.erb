@@ -24,6 +24,51 @@
     </div>
   </article>
 
+  <div id="personal-contact-tab-container" class="tabs is-boxed">
+    <ul>
+      <% @user.personal_contacts.each_with_index do |personal_contact, index| %> 
+        <li><a href="#personal-contact-<%= index+1 %>">Contacto personal <%= index+1 %></a></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="personal-contact-tab-panel">
+    <% @user.personal_contacts.each_with_index do |personal_contact, index| %> 
+      <div id="personal-contact-<%= index+1 %>">
+        Dirrecion:
+        <pre><%= personal_contact.address %></pre>
+          
+        <p>
+          <span class="icon is-small">
+            <i class="fa fa-phone"></i>
+          </span> <%= personal_contact.phone %>
+        </p>
+
+        <p>
+          <span class="icon is-small">
+              <i class="fa fa-mobile"></i>
+          </span> <%= personal_contact.mobile %>
+        </p>
+
+        <p>
+          <span class="icon is-small">
+            <i class="fa fa-envelope"></i>
+          </span> <%= personal_contact.email %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+      $('#personal-contact-tab-container').easytabs({
+        animate: false,
+        tabActiveClass: "is-active",
+        panelContext: $("#personal-contact-tab-panel")
+      });
+    });
+  </script>
+
+
   <hr class="full-width"/>
 
   <nav class="level">
