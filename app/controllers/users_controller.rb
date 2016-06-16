@@ -97,7 +97,7 @@ class UsersController < ApplicationController
       @users = @users.where("lower(unaccent(personal_contacts.city)) LIKE #{term} or lower(unaccent(profesional_contacts.city)) LIKE #{term}")
     end
 
-    if params[:country].present?
+    if params[:country][0].present?
       term = params[:country][0]
       term = "lower(unaccent('#{term}'))"
       @users = @users.where("lower(unaccent(personal_contacts.country)) = #{term} or lower(unaccent(profesional_contacts.country)) = #{term}")
