@@ -118,7 +118,8 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:last_name, :first_name, :graduate_year, :facebook, :linkedin, 
-       personal_contacts_attributes: [:id, :address_1, :address_2, :address_3, :country, :state, :zip_code, :city, :extra, :phone, :mobile, :email]
+       personal_contacts_attributes: [:id, :address_1, :address_2, :address_3, :country, :state, :zip_code, :city, :extra, :phone, :mobile, :email],
+       profesional_contacts_attributes: [:id, :address_1, :address_2, :address_3, :country, :state, :zip_code, :city, :extra, :phone, :mobile, :email, :company, :job, :company_website]
     )
   end
 

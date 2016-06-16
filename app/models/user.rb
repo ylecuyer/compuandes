@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
   has_many :personal_contacts
   accepts_nested_attributes_for :personal_contacts
 
+  has_many :profesional_contacts
+  accepts_nested_attributes_for :profesional_contacts
+
   def full_name
     [last_name, first_name].join(" ")
   end

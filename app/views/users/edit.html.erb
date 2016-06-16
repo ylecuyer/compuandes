@@ -23,11 +23,11 @@
           <%= fa.input :address_1, wrapper: false %>
           <%= fa.input :address_2, wrapper: false %>
           <%= fa.input :address_3, wrapper: false %>
+          <%= fa.input :extra, wrapper: false %>
           <%= fa.input :country, wrapper: false %>
           <%= fa.input :state, wrapper: false %>
           <%= fa.input :zip_code, wrapper: false %>
           <%= fa.input :city, wrapper: false %>
-          <%= fa.input :extra, wrapper: false %>
           <%= fa.input :phone, wrapper: false %>
           <%= fa.input :mobile, wrapper: false %>
           <%= fa.input :email, wrapper: false %>
@@ -42,6 +42,46 @@
         animate: false,
         tabActiveClass: "is-active",
         panelContext: $("#personal-contact-tab-panel")
+      });
+    });
+  </script>
+
+  <div id="profesional-contact-tab-container" class="tabs is-boxed">
+    <ul>
+      <% @user.profesional_contacts.each_with_index do |profesional_contact, index| %> 
+        <li><a href="#profesional-contact-<%= index+1 %>">Contacto profesional <%= index+1 %></a></li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="profesional-contact-tab-panel">
+    <% @user.profesional_contacts.each_with_index do |profesional_contact, index| %> 
+      <div id="profesional-contact-<%= index+1 %>">
+        <%= f.simple_fields_for :profesional_contacts, profesional_contact do |fa| %>
+          <%= fa.input :company, wrapper: false %>
+          <%= fa.input :job, wrapper: false %>
+          <%= fa.input :company_website, wrapper: false %>
+          <%= fa.input :address_1, wrapper: false %>
+          <%= fa.input :address_2, wrapper: false %>
+          <%= fa.input :address_3, wrapper: false %>
+          <%= fa.input :extra, wrapper: false %>
+          <%= fa.input :country, wrapper: false %>
+          <%= fa.input :state, wrapper: false %>
+          <%= fa.input :zip_code, wrapper: false %>
+          <%= fa.input :city, wrapper: false %>
+          <%= fa.input :phone, wrapper: false %>
+          <%= fa.input :mobile, wrapper: false %>
+          <%= fa.input :email, wrapper: false %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+      $('#profesional-contact-tab-container').easytabs({
+        animate: false,
+        tabActiveClass: "is-active",
+        panelContext: $("#profesional-contact-tab-panel")
       });
     });
   </script>
