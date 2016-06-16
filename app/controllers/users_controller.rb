@@ -44,7 +44,9 @@ class UsersController < ApplicationController
   def search
     authorize User, :index?
 
-    @users = User.order('last_name asc, first_name asc').page(params[:page]).per(9)
+    @users = User.distinct.order('last_name asc, first_name asc').page(params[:page]).per(9)
+    @users = @users.joins(:personal_contacts)
+    @users = @users.joins(:profesional_contacts)
 
     if params[:last_name].present?
       term = params[:last_name]
@@ -66,6 +68,15 @@ class UsersController < ApplicationController
 
     if params[:graduate_year].present?
       @users = @users.where('graduate_year = ?', params[:graduate_year])
+    end
+
+    if params[:company].present?
+      term = params[:company]
+      if params[:company_contains]
+        term = "%#{term}%"
+      end
+      term = "lower(unaccent('#{term}'))"
+      @users = @users.where("lower(unaccent(company)) LIKE #{term}")
     end
 
   end
