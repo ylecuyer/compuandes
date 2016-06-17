@@ -14,9 +14,9 @@
       <th></th><td></td>
     </tr>
     <tr>
-      <th>Continente:</th><td><%= params[:continent] %></td>
       <th>Pais:</th><td><%= ISO3166::Country.new(params[:country][0]).try(:name) %></td>
       <th>Ciudad</th><td><%= params[:city] %></td>
+      <th></th><td></td>
   </tbody>
 </table>
 
