@@ -14,6 +14,10 @@ class UsersController < ApplicationController
   def country
     authorize User, :index?
     @region = params[:region]
+
+    @personal_contacts = PersonalContact.where('country = ?', params[:region])
+    @profesional_contacts = ProfesionalContact.where('country = ?', params[:region])
+
   end
 
   def map
