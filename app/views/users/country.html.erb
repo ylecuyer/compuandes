@@ -27,13 +27,4 @@
 
 <% end %>
 
-<% @profesional_contacts.each do |profesional_contact| %>
-
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(<%= profesional_contact.latitude %>, <%= profesional_contact.longitude %>),
-    map: map,
-    title: "<%= profesional_contact.user.full_name %>"
-  });
-
-<% end %>
 </script>
