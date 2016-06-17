@@ -70,8 +70,8 @@ class UsersController < ApplicationController
       @users = @users.where("lower(unaccent(first_name)) LIKE #{term}")
     end
 
-    if params[:graduate_year].present?
-      @users = @users.where('graduate_year = ?', params[:graduate_year])
+    if params[:first_year].present?
+      @users = @users.where('first_year = ?', params[:first_year])
     end
 
     if params[:company].present?
@@ -156,7 +156,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:last_name, :first_name, :graduate_year, :facebook, :linkedin, 
+    params.require(:user).permit(:last_name, :first_name, :first_year, :facebook, :linkedin, 
        personal_contacts_attributes: [:id, :address_1, :address_2, :address_3, :country, :state, :zip_code, :city, :extra, :phone, :mobile, :email],
        profesional_contacts_attributes: [:id, :address_1, :address_2, :address_3, :country, :state, :zip_code, :city, :extra, :phone, :mobile, :email, :company, :job, :company_website]
     )

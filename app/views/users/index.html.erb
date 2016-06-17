@@ -35,11 +35,11 @@
 
   <div class="control is-horizontal">
     <div class="control-label">
-      <%= label_tag :graduate_year, 'Ano de grado', class: 'label' %>
+      <%= label_tag :first_year, 'Entro en', class: 'label' %>
     </div>
     <div class="control">
       <div class="select">
-        <%= select_tag :graduate_year, options_for_select((User.minimum(:graduate_year)..Time.now.year).to_a), prompt: 'Todos' %> 
+        <%= select_tag :first_year, options_for_select((User.minimum(:first_year)..Time.now.year).to_a), prompt: 'Todos' %> 
       </div>
     </div>
   </div>

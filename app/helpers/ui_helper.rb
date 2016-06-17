@@ -19,7 +19,7 @@ module UiHelper
               output3 = []
 
               title = content_tag(:p, user.full_name, class: 'title is-5')
-              subtitle = content_tag(:p, user.graduate_year, class: 'subtitle is-6')
+              subtitle = content_tag(:p, user.first_year, class: 'subtitle is-6')
 
               output3 << title
               output3 << subtitle

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617000913) do
+ActiveRecord::Schema.define(version: 20160617020249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 20160617000913) do
     t.datetime "avatar_updated_at"
     t.string   "last_name"
     t.string   "first_name"
-    t.integer  "graduate_year"
+    t.integer  "first_year"
     t.string   "linkedin"
     t.string   "facebook"
     t.string   "cv_file_name"

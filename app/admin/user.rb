@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :avatar, :last_name, :first_name, :graduate_year, :facebook, :linkedin, :cv, :email, :password, :password_confirmation
+  permit_params :avatar, :last_name, :first_name, :first_year, :facebook, :linkedin, :cv, :email, :password, :password_confirmation
 
   index do
     selectable_column
@@ -21,7 +21,7 @@ ActiveAdmin.register User do
       f.input :avatar
       f.input :last_name
       f.input :first_name
-      f.input :graduate_year
+      f.input :first_year
       f.input :facebook
       f.input :linkedin
       f.input :cv
@@ -36,7 +36,7 @@ ActiveAdmin.register User do
       end
       row :last_name
       row :first_name
-      row :graduate_year
+      row :first_year
       row :facebook do
         link_to user.facebook, facebook_url(user)
       end
