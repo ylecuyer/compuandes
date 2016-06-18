@@ -8,7 +8,11 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   has_attached_file :cv
-  validates_attachment_content_type :cv, content_type: 'application/pdf'
+  validates_attachment_content_type :cv, content_type: ["application/pdf","application/vnd.ms-excel",     
+             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+             "application/msword", 
+             "application/vnd.openxmlformats-officedocument.wordprocessingml.document", 
+             "text/plain"]
 
   has_many :personal_contacts
   accepts_nested_attributes_for :personal_contacts
