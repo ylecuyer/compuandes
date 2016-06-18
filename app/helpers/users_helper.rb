@@ -51,8 +51,12 @@ module UsersHelper
   end
 
   def cv_tag(user)
-    link_to user.cv.url, target: '_blank' do
-      image_tag 'cv.gif'
+    if user.cv.present?
+      link_to user.cv.url, target: '_blank' do
+        image_tag 'cv.gif'
+      end
+    else
+        image_tag 'cv.gif', class: 'disabled'
     end
   end
 end
