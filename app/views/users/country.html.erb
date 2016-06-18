@@ -19,9 +19,7 @@
 
 <% @personal_contacts.each do |personal_contact| %>
 
-  var infowindow = new google.maps.InfoWindow({
-    content: '<%= image_tag avatar_url(personal_contact.user), size: '35x35', style: 'float: left; margin-right: 7px;' %><b><%= link_to personal_contact.user.full_name, personal_contact.user %></b><br/><br/><%== simple_format(personal_contact.address).squish %>'
-  });
+  var infowindow = new google.maps.InfoWindow();
 
   var marker = new google.maps.Marker({
     position: new google.maps.LatLng(<%= personal_contact.latitude %>, <%= personal_contact.longitude %>),
@@ -30,7 +28,8 @@
   });
 
   marker.addListener('click', function() {
-    infowindow.open(map, marker);
+    infowindow.setContent('<%= image_tag avatar_url(personal_contact.user), size: '35x35', style: 'float: left; margin-right: 7px;' %><b><%= link_to personal_contact.user.full_name, personal_contact.user %></b><br/><br/><%== simple_format(personal_contact.address).squish %>');
+    infowindow.open(map, this);
   });
 
 <% end %>
