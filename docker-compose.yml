@@ -25,3 +25,12 @@ mail:
   image: djfarrelly/maildev
   ports:
     - "1080:80"
+ungit:
+  image: reinblau/ungit
+  ports:
+    - "8448:8448"
+  user: ylecuyer
+  volumes:
+    - .:/usr/src/app
+    - /home/ylecuyer/.gitconfig:/home/ylecuyer/.gitconfig
+    - /etc/passwd:/etc/passwd:ro
