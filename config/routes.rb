@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'services', to: 'static#services', as: 'services'
 
+  resources :wizard
+
   root to: 'static#index'
 
 end

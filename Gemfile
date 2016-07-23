@@ -42,6 +42,8 @@ gem 'active_link_to'
 gem 'kaminari'
 gem 'simple_form'
 gem 'geocoder'
+gem 'wicked'
+gem 'linkedin'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -54,5 +56,6 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'awesome_print'
 end
 
