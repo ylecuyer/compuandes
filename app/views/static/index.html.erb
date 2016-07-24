@@ -20,7 +20,7 @@
             Asociacion de egresados de ingenieria de<br/> sistemas
             de la Universidad de Los Andes
           </h2>
-          <%= link_to new_user_session_path, class: 'button', style: 'background-color: #FDF21C; border: none' do %>
+          <%= link_to user_omniauth_authorize_path(:azureactivedirectory), class: 'button', style: 'background-color: #FDF21C; border: none' do %>
             <span class="icon">
               <%= image_tag "logo_uniandes.png", size: '21x24' %>
             </span>

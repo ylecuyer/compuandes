@@ -44,6 +44,8 @@ gem 'simple_form'
 gem 'geocoder'
 gem 'wicked'
 gem 'linkedin'
+gem 'omniauth-azure-activedirectory'
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
