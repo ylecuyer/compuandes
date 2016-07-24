@@ -10,6 +10,15 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
 
+  def after_sign_in_path_for(resource)
+    if resource.sign_in_count == 1
+      wizard_path(Wicked::FIRST_STEP)
+    else
+      root_path
+    end
+  end 
+
+
   private
 
   def excepted_controller?
