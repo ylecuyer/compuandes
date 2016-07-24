@@ -4,8 +4,8 @@ class WizardController < ApplicationController
   steps :linkedin, :auth, :personal, :profesional
 
   def show
-    linkedin_client_id="77aq2eo1uvn1mv"
-    linkedin_client_secret="ZZLuQnzDlGorXElP"
+    linkedin_client_id=ENV['LINKEDIN_CLIENT_ID']
+    linkedin_client_secret=ENV['LINKEDIN_CLIENT_SECRET']
     
     client = LinkedIn::Client.new(linkedin_client_id, linkedin_client_secret)
 
