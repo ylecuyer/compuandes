@@ -13,8 +13,8 @@
     <% @user.profesional_contacts.each_with_index do |profesional_contact, index| %> 
       <div id="profesional-contact-<%= index+1 %>">
         <%= f.simple_fields_for :profesional_contacts, profesional_contact do |fa| %>
-          <%= fa.input :company, input_html: {value: @profile.positions.all[index].company.name }, wrapper: false %>
-          <%= fa.input :job, input_html: {value: @profile.positions.all[index].title }, wrapper: false %>
+          <%= fa.input :company, input_html: {value: (@profile.positions.all[index].company.name if @profile) }, wrapper: false %>
+          <%= fa.input :job, input_html: {value: (@profile.positions.all[index].title if @profile) }, wrapper: false %>
           <%= fa.input :company_website, wrapper: false %>
           <%= fa.input :address_1, wrapper: false %>
           <%= fa.input :address_2, wrapper: false %>

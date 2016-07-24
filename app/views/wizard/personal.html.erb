@@ -6,8 +6,8 @@
   <p class="control">
     <%= f.input_field :avatar %>
   </p>
-  <%= f.input :last_name, input_html: {value: @profile.last_name}, wrapper: false %>
-  <%= f.input :first_name, input_html: {value: @profile.first_name}, wrapper: false %>
+  <%= f.input :last_name, input_html: {value: (@profile.last_name if @profile)}, wrapper: false %>
+  <%= f.input :first_name, input_html: {value: (@profile.first_name if @profile)}, wrapper: false %>
   <%= f.input :first_year, wrapper: false %>
 
   <h1>Personal contact</h1>
