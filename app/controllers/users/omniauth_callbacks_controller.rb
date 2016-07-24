@@ -12,7 +12,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     auth = request.env["omniauth.auth"]
 
-    @user = User.where(email: auth.email).first_or_create do |user|
+    @user = User.where(email: auth.info.email).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.first_name = auth.info.first_name
