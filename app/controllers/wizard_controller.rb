@@ -51,6 +51,10 @@ class WizardController < ApplicationController
 
   private
 
+  def finish_wizard_path
+      user_path(current_user)
+  end
+
   def user_params
     params.require(:user).permit(:last_name, :first_name, :first_year, :facebook, :linkedin, :avatar, 
        :cv,
