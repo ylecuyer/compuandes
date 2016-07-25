@@ -15,10 +15,10 @@ class User < ActiveRecord::Base
              "application/vnd.openxmlformats-officedocument.wordprocessingml.document", 
              "text/plain"]
 
-  has_many :personal_contacts
+  has_many :personal_contacts, -> { order(id: :asc) }
   accepts_nested_attributes_for :personal_contacts
 
-  has_many :profesional_contacts
+  has_many :profesional_contacts, -> { order(id: :asc) }
   accepts_nested_attributes_for :profesional_contacts
 
   def full_name
