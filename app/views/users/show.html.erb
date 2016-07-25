@@ -34,7 +34,7 @@
   <div id="personal-contact-tab-panel">
     <% @user.personal_contacts.each_with_index do |personal_contact, index| %> 
       <div id="personal-contact-<%= index+1 %>">
-        Direcion:
+        Dirección:
         <pre><%= personal_contact.address %></pre>
           
         <p>
@@ -91,7 +91,7 @@
           </span> <%= profesional_contact.job %>
         </p>
           
-        Direcion:
+        Dirección:
         <pre><%= profesional_contact.address %></pre>
           
         <p>
