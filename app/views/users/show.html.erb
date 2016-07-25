@@ -19,6 +19,10 @@
         <strong><%= @user.full_name %></strong>
         <br>
         Entro en <%= @user.first_year %>
+        <br>
+        <small>Ultima conexion: <%= time_ago_in_words @user.last_sign_in_at %></small>
+        <br>
+        <small>Ultima actualizacion: <%= time_ago_in_words @user.updated_at %></small>
       </p>
       </div>
     </div>
