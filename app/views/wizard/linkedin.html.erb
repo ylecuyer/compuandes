@@ -1,4 +1,5 @@
-Usar Linkedin para llenar el perfil: <%= link_to "Linkedin", @linkedin_url %>
-
+Usar Linkedin para llenar el perfil: 
 <br/>
-<%= link_to 'Omitir', wizard_path(:personal) %>
+<br/>
+<%= link_to @linkedin_url do image_tag 'connect_linkedin.png' end %>
+<%= link_to 'Omitir', wizard_path(:personal), :class => 'button is-link' %>
