@@ -6,6 +6,11 @@
   <p class="control">
     <%= f.input_field :avatar %>
   </p>
+
+  <% if @profile %>
+    <%= check_box_tag :use_linkedin_profile_picture, "1", true %> <%= label_tag :use_linkedin_profile_picture, 'Usar la imagen de perfil de LinkedIn' %>
+  <% end %>
+
   <%= f.input :last_name, input_html: {value: (@profile.last_name if @profile)}, wrapper: false %>
   <%= f.input :first_name, input_html: {value: (@profile.first_name if @profile)}, wrapper: false %>
   <%= f.input :first_year, wrapper: false %>

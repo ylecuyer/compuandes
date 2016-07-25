@@ -4,10 +4,8 @@ class WizardController < ApplicationController
   steps :linkedin, :auth, :personal, :profesional
 
   def show
-    linkedin_client_id=ENV['LINKEDIN_CLIENT_ID']
-    linkedin_client_secret=ENV['LINKEDIN_CLIENT_SECRET']
     
-    client = LinkedIn::Client.new(linkedin_client_id, linkedin_client_secret)
+    client = LinkedIn::Client.new(ENV['LINKEDIN_CLIENT_ID'], ENV['LINKEDIN_CLIENT_SECRET'])
 
     case step
     when :linkedin
@@ -24,7 +22,7 @@ class WizardController < ApplicationController
       @user = current_user
       if session[:atoken].present?
         client.authorize_from_access(session[:atoken], session[:asecret])
-        @profile = client.profile(fields: [:first_name, :last_name, :picture_url, :public_profile_url])
+        @profile = client.profile(fields: [:first_name, :last_name, :'picture-urls::(original)', :public_profile_url])
       end
     when :profesional
       @user = current_user
@@ -39,6 +37,14 @@ class WizardController < ApplicationController
 
   def update
     @user = current_user
+
+    if params[:use_linkedin_profile_picture]
+      client = LinkedIn::Client.new(ENV['LINKEDIN_CLIENT_ID'], ENV['LINKEDIN_CLIENT_SECRET'])
+      client.authorize_from_access(session[:atoken], session[:asecret])
+      picture_url = client.picture_urls.all.first
+      @user.avatar = URI.parse(picture_url).open
+    end
+
     @user.update_attributes(user_params)
     render_wizard @user
   end
