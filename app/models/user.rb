@@ -34,4 +34,8 @@ class User < ActiveRecord::Base
     self.profesional_contacts = [ProfesionalContact.new, ProfesionalContact.new]
   end
 
+  def should_record_timestamps?
+    (self.changes.keys.map(&:to_sym) - (Devise::Models::Trackable.required_fields(nil) + [:remember_token, :remember_created_at])).present? && super
+  end
+
 end
