@@ -1,110 +1,129 @@
-<h1 class="title">Directorio</h1>
-<hr/>
-
-<%= form_tag users_search_path, method: :get do %>
-
-  <div class="control is-horizontal">
-    <div class="control-label">
-      <%= label_tag :last_name, 'Apellido', class: 'label' %>
-    </div>
-    <div class="control is-grouped">
-      <p class="control">
-      <%= text_field_tag :last_name, nil, class: 'input' %> 
-      </p>
-      <p class="control horizontal-center">
-      <%= check_box_tag :last_name_contains, "1", true, class: 'checkbox' %>
-      <%= label_tag :last_name_contains, 'contiene'%>
-      </p>
-    </div>
-  </div>
-
-  <div class="control is-horizontal">
-    <div class="control-label">
-      <%= label_tag :first_name, 'Nombre', class: 'label' %>
-    </div>
-    <div class="control is-grouped">
-      <p class="control">
-      <%= text_field_tag :first_name, nil, class: 'input' %> 
-      </p>
-      <p class="control horizontal-center">
-      <%= check_box_tag :first_name_contains, "1", true, class: 'checkbox' %>
-      <%= label_tag :first_name_contains, 'contiene'%>
-      </p>
-    </div>
-  </div>
-
-  <div class="control is-horizontal">
-    <div class="control-label">
-      <%= label_tag :first_year, 'Entro en', class: 'label' %>
-    </div>
-    <div class="control">
-      <div class="select">
-        <%= select_tag :first_year, options_for_select((User.minimum(:first_year)..Time.now.year).to_a), prompt: 'Todos' %> 
+<div class="columns">
+  <div class="column">
+    <div class="box">
+      <h4>Ultimas actulizaciones:</h4>
+      <br/>
+      <div class="columns is-multiline">
+        <% @last_edited_users.each do |user| %>
+          <div class="column is-4">
+            <%= link_to user_path(user) do %>
+              <%= image_tag avatar_url(user) %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
+  <div class="column is-8">
+    <br/>
+    <h1 class="title">Directorio</h1>
+    <br/>
+    <%= form_tag users_search_path, method: :get do %>
 
-  <div class="control is-horizontal">
-    <div class="control-label">
-      <%= label_tag :company, 'Empresa', class: 'label' %>
-    </div>
-    <div class="control is-grouped">
-      <p class="control">
-      <%= text_field_tag :company, nil, class: 'input' %> 
-      </p>
-      <p class="control horizontal-center">
-      <%= check_box_tag :company_contains, "1", true, class: 'checkbox' %>
-      <%= label_tag :company_contains, 'contiene'%>
-      </p>
-    </div>
-  </div>
-
-  <div class="control is-horizontal">
-    <div class="control-label">
-      <%= label_tag :job, 'Cargo', class: 'label' %>
-    </div>
-    <div class="control is-grouped">
-      <p class="control">
-      <%= text_field_tag :job, nil, class: 'input' %> 
-      </p>
-      <p class="control horizontal-center">
-      <%= check_box_tag :job_contains, "1", true, class: 'checkbox' %>
-      <%= label_tag :job_contains, 'contiene'%>
-      </p>
-    </div>
-  </div>
-
-  <div class="control is-horizontal">
-    <div class="control-label">
-      <%= label_tag :country, 'Pais', class: 'label' %>
-    </div>
-    <div class="control">
-      <div class="select">
-        <%= country_select :country, nil, prompt: 'Todos' %> 
+      <div class="control is-horizontal">
+        <div class="control-label">
+          <%= label_tag :last_name, 'Apellido', class: 'label' %>
+        </div>
+        <div class="control is-grouped">
+          <p class="control">
+          <%= text_field_tag :last_name, nil, class: 'input' %> 
+          </p>
+          <p class="control horizontal-center">
+          <%= check_box_tag :last_name_contains, "1", true, class: 'checkbox' %>
+          <%= label_tag :last_name_contains, 'contiene'%>
+          </p>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="control is-horizontal">
-    <div class="control-label">
-      <%= label_tag :city, 'Ciudad', class: 'label' %>
-    </div>
-    <div class="control is-grouped">
-      <p class="control">
-      <%= text_field_tag :city, nil, class: 'input' %> 
-      </p>
-      <p class="control horizontal-center">
-      <%= check_box_tag :city_contains, "1", true, class: 'checkbox' %>
-      <%= label_tag :city_contains, 'contiene'%>
-      </p>
-    </div>
-  </div>
+      <div class="control is-horizontal">
+        <div class="control-label">
+          <%= label_tag :first_name, 'Nombre', class: 'label' %>
+        </div>
+        <div class="control is-grouped">
+          <p class="control">
+          <%= text_field_tag :first_name, nil, class: 'input' %> 
+          </p>
+          <p class="control horizontal-center">
+          <%= check_box_tag :first_name_contains, "1", true, class: 'checkbox' %>
+          <%= label_tag :first_name_contains, 'contiene'%>
+          </p>
+        </div>
+      </div>
 
-  <div class="is-pulled-right">
-  <%= button_tag 'Borrar', type: :reset, class: 'button is-link' %>
-  <%= button_tag type: :submit, class: 'button is-primary' do %>
-    <span class="icon is-small"><i class="fa fa-search"></i></span>
-    <span>Buscar</span>
-  <% end %>
+      <div class="control is-horizontal">
+        <div class="control-label">
+          <%= label_tag :first_year, 'Entro en', class: 'label' %>
+        </div>
+        <div class="control">
+          <div class="select">
+            <%= select_tag :first_year, options_for_select((User.minimum(:first_year)..Time.now.year).to_a), prompt: 'Todos' %> 
+          </div>
+        </div>
+      </div>
+
+      <div class="control is-horizontal">
+        <div class="control-label">
+          <%= label_tag :company, 'Empresa', class: 'label' %>
+        </div>
+        <div class="control is-grouped">
+          <p class="control">
+          <%= text_field_tag :company, nil, class: 'input' %> 
+          </p>
+          <p class="control horizontal-center">
+          <%= check_box_tag :company_contains, "1", true, class: 'checkbox' %>
+          <%= label_tag :company_contains, 'contiene'%>
+          </p>
+        </div>
+      </div>
+
+      <div class="control is-horizontal">
+        <div class="control-label">
+          <%= label_tag :job, 'Cargo', class: 'label' %>
+        </div>
+        <div class="control is-grouped">
+          <p class="control">
+          <%= text_field_tag :job, nil, class: 'input' %> 
+          </p>
+          <p class="control horizontal-center">
+          <%= check_box_tag :job_contains, "1", true, class: 'checkbox' %>
+          <%= label_tag :job_contains, 'contiene'%>
+          </p>
+        </div>
+      </div>
+
+      <div class="control is-horizontal">
+        <div class="control-label">
+          <%= label_tag :country, 'Pais', class: 'label' %>
+        </div>
+        <div class="control">
+          <div class="select">
+            <%= country_select :country, nil, prompt: 'Todos' %> 
+          </div>
+        </div>
+      </div>
+
+      <div class="control is-horizontal">
+        <div class="control-label">
+          <%= label_tag :city, 'Ciudad', class: 'label' %>
+        </div>
+        <div class="control is-grouped">
+          <p class="control">
+          <%= text_field_tag :city, nil, class: 'input' %> 
+          </p>
+          <p class="control horizontal-center">
+          <%= check_box_tag :city_contains, "1", true, class: 'checkbox' %>
+          <%= label_tag :city_contains, 'contiene'%>
+          </p>
+        </div>
+      </div>
+
+      <div class="is-pulled-right">
+        <%= button_tag 'Borrar', type: :reset, class: 'button is-link' %>
+        <%= button_tag type: :submit, class: 'button is-primary' do %>
+          <span class="icon is-small"><i class="fa fa-search"></i></span>
+          <span>Buscar</span>
+        <% end %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     authorize User
     @user = User.new
+    @last_edited_users = User.order(updated_at: :desc).take(9)
   end
 
   def edit
