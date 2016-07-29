@@ -48,4 +48,9 @@ module UiHelper
     end
   end
 
+  def company_logo(profesional_contact)
+    host = URI.parse(profesional_contact.company_website).host
+    image_tag "http://logo.clearbit.com/#{host}?size=64", onerror: 'this.style.display = "none"'
+  end
+
 end

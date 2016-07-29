@@ -19,16 +19,17 @@
         <strong><%= @user.full_name %></strong>
         <br>
         Entro en <%= @user.first_year %>
-        <br>
+        <div style="line-height: 70%">
         <small>Ultima conexion: <%= time_ago_in_words @user.last_sign_in_at %></small>
         <br>
         <small>Ultima actualizacion: <%= time_ago_in_words @user.updated_at %></small>
+        </div>
       </p>
       </div>
     </div>
   </article>
 
-  <div id="personal-contact-tab-container" class="tabs is-boxed">
+  <div id="personal-contact-tab-container" class="tabs is-boxed" style="margin-top: 20px">
     <ul>
       <% @user.personal_contacts.each_with_index do |personal_contact, index| %> 
         <li><a href="#personal-contact-<%= index+1 %>">Contacto personal <%= index+1 %></a></li>
@@ -38,26 +39,31 @@
   <div id="personal-contact-tab-panel">
     <% @user.personal_contacts.each_with_index do |personal_contact, index| %> 
       <div id="personal-contact-<%= index+1 %>">
-        Dirección:
-        <pre><%= personal_contact.address %></pre>
-          
-        <p>
+        <div style="margin: 20px 0px" >
+          <% if personal_contact.phone.present? %>
           <span class="icon is-small">
             <i class="fa fa-phone"></i>
-          </span> <%= personal_contact.phone %>
-        </p>
-
-        <p>
+          </span> <a href="tel:<%= personal_contact.phone %>"><%= personal_contact.phone %></a>
+          |
+          <% end %>
+          <% if personal_contact.mobile.present? %>
           <span class="icon is-small">
               <i class="fa fa-mobile"></i>
-          </span> <%= personal_contact.mobile %>
-        </p>
-
-        <p>
+          </span> <a href="tel:<%= personal_contact.mobile %>"><%= personal_contact.mobile %></a>
+          |
+          <% end %>
+          <% if personal_contact.email.present? %>
           <span class="icon is-small">
             <i class="fa fa-envelope"></i>
-          </span> <%= personal_contact.email %>
-        </p>
+          </span> <%= mail_to personal_contact.email %>
+          <% end %>
+        </div>
+        <div>
+          <% if personal_contact.address_1.present? %>
+          <img style="float:left; margin-bottom: 27px" src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=300x150&markers=<%= personal_contact.latitude %>, <%= personal_contact.longitude %>&key=AIzaSyAAWoGUagt-u1T4pUAOjJR6jCQiRiy2pWw" />
+          <pre style="display: inline-block; padding: 7px; margin-left: 7px"><%= personal_contact.address %></pre>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
@@ -72,7 +78,7 @@
     });
   </script>
 
-  <div id="profesional-contact-tab-container" class="tabs is-boxed">
+  <div id="profesional-contact-tab-container" class="tabs is-boxed" style="clear: both; margin-top: 20px">
     <ul>
       <% @user.profesional_contacts.each_with_index do |profesional_contact, index| %> 
         <li><a href="#profesional-contact-<%= index+1 %>">Contacto profesional <%= index+1 %></a></li>
@@ -83,44 +89,39 @@
     <% @user.profesional_contacts.each_with_index do |profesional_contact, index| %> 
       <div id="profesional-contact-<%= index+1 %>">
 
-        <p>
-          <span class="icon is-small">
-            <i class="fa fa-building"></i>
-          </span> <%= profesional_contact.company %>
-        </p>
-
-        <p>
-          <span class="icon is-small">
-            <i class="fa fa-briefcase"></i>
-          </span> <%= profesional_contact.job %>
-        </p>
-          
-        Dirección:
-        <pre><%= profesional_contact.address %></pre>
-          
-        <p>
-          <span class="icon is-small">
-            <i class="fa fa-globe"></i>
-          </span> <%= profesional_contact.company_website %>
-        </p>
-          
-        <p>
+        <div>
+          <div style="float: left; margin-right: 7px"><%= company_logo(profesional_contact) %></div>
+          <p style="padding-top: 2px">
+          <strong><%= profesional_contact.job %></strong><br/>
+          <%= profesional_contact.company %><br/>
+          <%= link_to profesional_contact.company_website %>
+          </p>
+        </div>
+        <div style="clear:both; margin: 20px 0px" >
+          <% if profesional_contact.phone.present? %>
           <span class="icon is-small">
             <i class="fa fa-phone"></i>
-          </span> <%= profesional_contact.phone %>
-        </p>
-
-        <p>
+          </span> <a href="tel:<%= profesional_contact.phone %>"><%= profesional_contact.phone %></a>
+          |
+          <% end %>
+          <% if profesional_contact.mobile.present? %>
           <span class="icon is-small">
               <i class="fa fa-mobile"></i>
-          </span> <%= profesional_contact.mobile %>
-        </p>
-
-        <p>
+          </span> <a href="tel:<%= profesional_contact.mobile %>"><%= profesional_contact.mobile %></a>
+          |
+          <% end %>
+          <% if profesional_contact.email.present? %>
           <span class="icon is-small">
             <i class="fa fa-envelope"></i>
-          </span> <%= profesional_contact.email %>
-        </p>
+          </span> <%= mail_to profesional_contact.email %>
+          <% end %>
+        </div>
+        <div>
+          <% if profesional_contact.address_1.present? %>
+          <img style="float:left; margin-bottom: 7px" src="https://maps.googleapis.com/maps/api/staticmap?zoom=13&size=300x150&markers=<%= profesional_contact.latitude %>, <%= profesional_contact.longitude %>&key=AIzaSyAAWoGUagt-u1T4pUAOjJR6jCQiRiy2pWw" />
+          <pre style="display: inline-block; padding: 7px; margin-left: 7px"><%= profesional_contact.address %></pre>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
@@ -135,7 +136,7 @@
     });
   </script>
 
-  <hr class="full-width"/>
+  <hr style="clear: both;" class="full-width"/>
 
   <nav class="level">
     <div class="level-item has-text-centered">
