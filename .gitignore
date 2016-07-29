@@ -13,3 +13,5 @@
 /tmp
 docker
 public/system
+
+config/application.yml
