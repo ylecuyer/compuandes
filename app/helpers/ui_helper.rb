@@ -49,7 +49,15 @@ module UiHelper
   end
 
   def company_logo(profesional_contact)
-    host = URI.parse(profesional_contact.company_website).host
+  
+    host = ""
+
+    if profesional_contact.company_website.present?
+      host = URI.parse(profesional_contact.company_website).host
+    elsif profesional_contact.email.present?
+      host = profesional_contact.split('@')[-1]
+    end
+    
     image_tag "http://logo.clearbit.com/#{host}?size=64", onerror: 'this.style.display = "none"'
   end
 
