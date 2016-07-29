@@ -94,7 +94,9 @@
           <p style="padding-top: 2px">
           <strong><%= profesional_contact.job %></strong><br/>
           <%= profesional_contact.company %><br/>
-          <%= link_to profesional_contact.company_website %>
+          <% if profesional_contact.company_website %> 
+            <%= link_to profesional_contact.company_website %>
+          <% end %>
           </p>
         </div>
         <div style="clear:both; margin: 20px 0px" >
