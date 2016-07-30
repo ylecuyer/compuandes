@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     if resource.sign_in_count == 1
       wizard_path(Wicked::FIRST_STEP)
     else
-      root_path
+      authenticated_root_path
     end
   end 
 
