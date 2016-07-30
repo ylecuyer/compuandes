@@ -1,8 +1,6 @@
 <%= simple_form_for @user, url: wizard_path, method: :put do |f| %>
 
-  <h1>Infos</h1>
-
-  <%= f.label :avatar, class: 'label' %>
+  <%= f.label :avatar, 'Imagen de perfil', class: 'label' %>
   <p class="control">
     <%= f.input_field :avatar %>
   </p>
@@ -11,12 +9,10 @@
     <%= check_box_tag :use_linkedin_profile_picture, "1", true %> <%= label_tag :use_linkedin_profile_picture, 'Usar la imagen de perfil de LinkedIn' %>
   <% end %>
 
-  <%= f.input :last_name, input_html: {value: (@profile.last_name if @profile)}, wrapper: false %>
-  <%= f.input :first_name, input_html: {value: (@profile.first_name if @profile)}, wrapper: false %>
-  <%= f.input :first_year, wrapper: false %>
+  <%= f.input :last_name, label: 'Apellidos', input_html: {value: (@profile.last_name if @profile)}, wrapper: false %>
+  <%= f.input :first_name, label: 'Nombres', input_html: {value: (@profile.first_name if @profile)}, wrapper: false %>
+  <%= f.input :first_year,  label: 'Primer año en', wrapper: false %>
   <%= f.hidden_field :linkedin, value: (@profile.public_profile_url.split('/')[-1] if @profile) %>
-
-  <h1>Personal contact</h1>
 
   <div id="personal-contact-tab-container" class="tabs is-boxed">
     <ul>
@@ -29,17 +25,17 @@
     <% @user.personal_contacts.each_with_index do |personal_contact, index| %> 
       <div id="personal-contact-<%= index+1 %>">
         <%= f.simple_fields_for :personal_contacts, personal_contact do |fa| %>
-          <%= fa.input :address_1, wrapper: false %>
-          <%= fa.input :address_2, wrapper: false %>
-          <%= fa.input :address_3, wrapper: false %>
-          <%= fa.input :extra, wrapper: false %>
-          <%= fa.input :country, wrapper: false %>
-          <%= fa.input :state, wrapper: false %>
-          <%= fa.input :zip_code, wrapper: false %>
-          <%= fa.input :city, wrapper: false %>
-          <%= fa.input :phone, wrapper: false %>
-          <%= fa.input :mobile, wrapper: false %>
-          <%= fa.input :email, wrapper: false %>
+          <%= fa.input :address_1, label: 'Dirección 1', wrapper: false %>
+          <%= fa.input :address_2, label: 'Dirección 2', wrapper: false %>
+          <%= fa.input :address_3, label: 'Dirección 3', wrapper: false %>
+          <%= fa.input :extra, label: 'Extra', wrapper: false %>
+          <%= fa.input :country, label: 'País', wrapper: false %>
+          <%= fa.input :state, label: 'Estado', wrapper: false %>
+          <%= fa.input :zip_code, label: 'Código postal', wrapper: false %>
+          <%= fa.input :city, label: 'Ciudad', wrapper: false %>
+          <%= fa.input :phone, label: 'Teléfono fijo', wrapper: false %>
+          <%= fa.input :mobile, label: 'Celular', wrapper: false %>
+          <%= fa.input :email, label: 'Correo electrónico', wrapper: false %>
         <% end %>
       </div>
     <% end %>

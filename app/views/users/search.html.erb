@@ -6,7 +6,7 @@
     <tr>
       <th>Apellido:</th><td><%= params[:last_name] %></td>
       <th>Nombre:</th><td><%= params[:first_name] %></td>
-      <th>Entro en:</th><td><%= params[:first_year] %></td>
+      <th>Entró en:</th><td><%= params[:first_year] %></td>
     </tr>
     <tr>
       <th>Empresa:</th><td><%= params[:company] %></td>
@@ -14,7 +14,8 @@
       <th></th><td></td>
     </tr>
     <tr>
-      <th>Pais:</th><td><%= ISO3166::Country.new(params[:country][0]).try(:name) %></td>
+      <% country = ISO3166::Country[params[:country][0]] %>
+      <th>País:</th><td><%= country.translations[I18n.locale.to_s] || country.name if country %></td>
       <th>Ciudad</th><td><%= params[:city] %></td>
       <th></th><td></td>
   </tbody>

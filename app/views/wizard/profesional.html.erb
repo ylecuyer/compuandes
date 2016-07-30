@@ -1,7 +1,5 @@
 <%= simple_form_for @user, url: wizard_path, method: :put do |f| %>
 
-  <h1>Profesional contact</h1>
-
   <div id="profesional-contact-tab-container" class="tabs is-boxed">
     <ul>
       <% @user.profesional_contacts.each_with_index do |profesional_contact, index| %> 
@@ -13,20 +11,20 @@
     <% @user.profesional_contacts.each_with_index do |profesional_contact, index| %> 
       <div id="profesional-contact-<%= index+1 %>">
         <%= f.simple_fields_for :profesional_contacts, profesional_contact do |fa| %>
-          <%= fa.input :company, input_html: {value: (@profile.positions.all[index].company.name if @profile) }, wrapper: false %>
-          <%= fa.input :job, input_html: {value: (@profile.positions.all[index].title if @profile) }, wrapper: false %>
-          <%= fa.input :company_website, wrapper: false %>
-          <%= fa.input :address_1, wrapper: false %>
-          <%= fa.input :address_2, wrapper: false %>
-          <%= fa.input :address_3, wrapper: false %>
-          <%= fa.input :extra, wrapper: false %>
-          <%= fa.input :country, wrapper: false %>
-          <%= fa.input :state, wrapper: false %>
-          <%= fa.input :zip_code, wrapper: false %>
-          <%= fa.input :city, wrapper: false %>
-          <%= fa.input :phone, wrapper: false %>
-          <%= fa.input :mobile, wrapper: false %>
-          <%= fa.input :email, wrapper: false %>
+          <%= fa.input :company, label: 'Empresa', input_html: {value: (@profile.positions.all[index].company.name if @profile) }, wrapper: false %>
+          <%= fa.input :job, label: 'Cargo', input_html: {value: (@profile.positions.all[index].title if @profile) }, wrapper: false %>
+          <%= fa.input :company_website, label: 'Sitio web', wrapper: false %>
+          <%= fa.input :address_1, label: 'Dirección 1', wrapper: false %>
+          <%= fa.input :address_2, label: 'Dirección 2', wrapper: false %>
+          <%= fa.input :address_3, label: 'Dirección 3', wrapper: false %>
+          <%= fa.input :extra, label: 'Extra', wrapper: false %>
+          <%= fa.input :country, label: 'País', wrapper: false %>
+          <%= fa.input :state, label: 'Estado', wrapper: false %>
+          <%= fa.input :zip_code, label: 'Código postal', wrapper: false %>
+          <%= fa.input :city, label: 'Ciudad', wrapper: false %>
+          <%= fa.input :phone, label: 'Teléfono fijo', wrapper: false %>
+          <%= fa.input :mobile, label: 'Celular', wrapper: false %>
+          <%= fa.input :email, label: 'Correo electrónico', wrapper: false %>
         <% end %>
       </div>
     <% end %>
