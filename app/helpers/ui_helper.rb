@@ -58,7 +58,7 @@ module UiHelper
       host = profesional_contact.split('@')[-1]
     end
     
-    image_tag "http://logo.clearbit.com/#{host}?size=64", onerror: 'this.style.display = "none"'
+    image_tag "https://logo.clearbit.com/#{host}?size=64", onerror: 'this.style.display = "none"'
   end
 
 end
