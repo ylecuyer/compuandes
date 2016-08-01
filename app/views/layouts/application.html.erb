@@ -38,8 +38,28 @@
 
     <section class="section">
       <div class="container is-fluid">
-      
 
+        <% if !(params[:controller] == 'wizard') && current_user.completeness < 0.9 %>
+          <article class="message is-warning">
+            <div class="message-header">
+              Un momento por favor
+            </div>
+            <div class="message-body">
+              Tu perfil no está completo, lo puedes terminar de llenar <%= link_to 'aquí', wizard_path(Wicked::FIRST_STEP) %> agregando una forma de contacto, tu trabajo actual, una foto,... Para simplificar el proceso, puedes importar tus datos desde LinkedIn.<br/>
+              Solo los egresados y estudiantes de la Universidad de Los Andes pueden ver los datos publicados, si la información de los demás te es muy útil, la tuya también lo es para el resto.
+
+              <br/>
+              <br/>
+
+              <span>
+                <progress style="display: inline-block; width: 200px" class="progress is-primary" value="<%= current_user.completeness * 100%>" max="100">10%</progress> 70%
+              </span>
+              <%= link_to "Llenar", wizard_path(Wicked::FIRST_STEP), class: 'button is-primary pull-right' %>
+              <div style="clear: both"></div>
+            </div>
+          </article>
+        <% end %>
+      
         <% flash.each do |key, msg| %>
           <div class="notification">
             <button class="delete"></button>

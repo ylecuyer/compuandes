@@ -25,6 +25,45 @@ class User < ActiveRecord::Base
     [last_name, first_name].join(" ")
   end
 
+  def completeness
+    score = 0
+    total = 0.0
+
+    score += 15 if avatar.present? 
+    total += 15
+
+    score += 5 if last_name.present?
+    total += 5
+
+    score += 5 if first_name.present?
+    total += 5
+
+    score += 5 if first_year.present?
+    total += 5
+
+    if personal_contacts[0].email.present? || personal_contacts[1].email.present? || profesional_contacts[0].email.present? || profesional_contacts[1].email.present?
+      score += 15
+    end
+    total += 15
+
+    if personal_contacts[0].phone.present? || personal_contacts[1].phone.present? || profesional_contacts[0].phone.present? || profesional_contacts[1].phone.present? || personal_contacts[0].mobile.present? || personal_contacts[1].mobile.present? || profesional_contacts[0].mobile.present? || profesional_contacts[1].mobile.present?
+      score += 15
+    end
+    total += 15
+
+    if profesional_contacts[0].job.present? || profesional_contacts[1].job.present?
+      score += 15
+    end
+    total += 15
+
+    if profesional_contacts[0].company.present? || profesional_contacts[1].company.present?
+      score += 15
+    end
+    total += 15
+    
+    score/total
+  end
+
   after_create :init_contacts
 
   private
