@@ -55,6 +55,7 @@ class UsersController < ApplicationController
 
     if params[:last_name].present?
       term = params[:last_name]
+      term.strip!
       if params[:last_name_contains]
         term = "%#{term}%"
       end
@@ -64,6 +65,7 @@ class UsersController < ApplicationController
 
     if params[:first_name].present?
       term = params[:first_name]
+      term.strip!
       if params[:first_name_contains]
         term = "%#{term}%"
       end
@@ -77,6 +79,7 @@ class UsersController < ApplicationController
 
     if params[:company].present?
       term = params[:company]
+      term.strip!
       if params[:company_contains]
         term = "%#{term}%"
       end
@@ -86,6 +89,7 @@ class UsersController < ApplicationController
 
     if params[:job].present?
       term = params[:job]
+      term.strip!
       if params[:job_contains]
         term = "%#{term}%"
       end
@@ -95,6 +99,7 @@ class UsersController < ApplicationController
 
     if params[:city].present?
       term = params[:city]
+      term.strip!
       if params[:city_contains]
         term = "%#{term}%"
       end
