@@ -53,7 +53,9 @@ module UiHelper
     host = ""
 
     if profesional_contact.company_website.present?
-      host = URI.parse(profesional_contact.company_website).host
+      url = profesional_contact.company_website
+      uri = myUri = url.start_with?('http') ? URI(url) : URI("http://#{url}")
+      host = uri.host
     elsif profesional_contact.email.present?
       host = profesional_contact.split('@')[-1]
     end
